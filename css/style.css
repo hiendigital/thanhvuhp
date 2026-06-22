@@ -402,7 +402,15 @@ h1, h2, h3, h4 { line-height: 1.25; color: var(--primary); font-weight: 700; }
 /* ===========================================================
    FOOTER
    =========================================================== */
-.site-footer { background: var(--primary-dark); color: #c5d2e4; padding-top: 60px; font-size: 0.94rem; }
+.site-footer { position: relative; overflow: hidden; background: var(--primary-dark); color: #c5d2e4; padding-top: 60px; font-size: 0.94rem; }
+/* Ảnh nền xưởng gỗ rõ nét, phủ gradient navy đậm trên - nhạt dần xuống dưới */
+.site-footer::before {
+  content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background:
+    linear-gradient(to bottom, rgba(13,28,52,.95) 0%, rgba(18,40,70,.80) 45%, rgba(22,52,87,.62) 100%),
+    url('../images/z7963832831405_27c6bb50a70948a6f66da00d2f553a3f.jpg') center / cover no-repeat;
+}
+.site-footer .container, .site-footer .footer-bottom { position: relative; z-index: 1; }
 .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1.4fr; gap: 40px; padding-bottom: 40px; }
 .site-footer h4 { color: #fff; font-size: 1.05rem; margin-bottom: 18px; position: relative; padding-bottom: 12px; }
 .site-footer h4::after { content: ""; position: absolute; left: 0; bottom: 0; width: 40px; height: 3px; background: var(--accent); border-radius: 3px; }
