@@ -556,7 +556,7 @@ h1, h2, h3, h4 { line-height: 1.25; color: var(--primary); font-weight: 700; }
 @media (max-width: 420px) {
   .gallery, .cert-grid { grid-template-columns: 1fr 1fr; }
   .logo .logo-text span { display: none; }
-  .logo img { height: 60px; }
+  .logo img { height: 50px; }
 }
 @media(max-width:360px){
   .topbar .tb-left,.topbar .tb-right {
