@@ -103,3 +103,67 @@ $(function () {
     });
   }
 });
+
+/* ===========================================================
+   Hiệu ứng BỤI GỖ bay ở banner — JS thuần, độc lập với jQuery
+   =========================================================== */
+(function () {
+  function initDust() {
+    var canvas = document.querySelector(".hero-dust");
+    if (!canvas || !canvas.getContext) return;
+    var ctx = canvas.getContext("2d");
+    var hero = canvas.parentElement;
+    var particles = [];
+    var colors = ["rgba(214,168,98,", "rgba(196,142,74,", "rgba(232,200,142,", "rgba(168,126,72,"];
+    function rnd(a, b) { return a + Math.random() * (b - a); }
+    function make(spread) {
+      return {
+        x: Math.random() * canvas.width,
+        y: spread ? Math.random() * canvas.height : -8,
+        r: rnd(1.4, 4.6),
+        sx: rnd(-0.3, 0.3),
+        sy: rnd(0.18, 0.8),
+        a: rnd(0.4, 0.95),
+        sway: rnd(0.005, 0.02),
+        ph: Math.random() * Math.PI * 2,
+        c: colors[Math.floor(Math.random() * colors.length)]
+      };
+    }
+    function size() {
+      canvas.width = hero.offsetWidth || window.innerWidth;
+      canvas.height = hero.offsetHeight || 600;
+      var count = Math.max(60, Math.round(canvas.width / 11));
+      while (particles.length < count) particles.push(make(true));
+      particles.length = count;
+    }
+    function tick() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (var i = 0; i < particles.length; i++) {
+        var p = particles[i];
+        p.ph += p.sway;
+        p.x += p.sx + Math.sin(p.ph) * 0.3;
+        p.y += p.sy;
+        if (p.y > canvas.height + 6 || p.x < -6 || p.x > canvas.width + 6) {
+          particles[i] = make(false);
+          continue;
+        }
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = p.c + p.a + ")";
+        ctx.shadowColor = "rgba(255,210,130,0.9)";
+        ctx.shadowBlur = 6;
+        ctx.fill();
+      }
+      ctx.shadowBlur = 0;
+      requestAnimationFrame(tick);
+    }
+    size();
+    window.addEventListener("resize", size);
+    requestAnimationFrame(tick);
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initDust);
+  } else {
+    initDust();
+  }
+})();

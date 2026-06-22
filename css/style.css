@@ -157,6 +157,8 @@ h1, h2, h3, h4 { line-height: 1.25; color: var(--primary); font-weight: 700; }
   background: radial-gradient(circle, rgba(255,153,0,.30), rgba(255,153,0,0) 70%);
   animation: heroFloat 9s ease-in-out infinite;
 }
+/* Lớp canvas bụi gỗ bay */
+.hero-dust { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
 .hero .container { position: relative; z-index: 2; max-width: 840px; }
 
 /* Hiệu ứng xuất hiện tuần tự */
