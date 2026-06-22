@@ -558,7 +558,12 @@ h1, h2, h3, h4 { line-height: 1.25; color: var(--primary); font-weight: 700; }
   .logo .logo-text span { display: none; }
   .logo img { height: 60px; }
 }
-
+@media(max-width:360px){
+  .topbar .tb-left,.topbar .tb-right {
+    gap: 12px;
+    font-size: 13px;
+  }
+}
 /* Tôn trọng tùy chọn giảm chuyển động của người dùng */
 @media (prefers-reduced-motion: reduce) {
   .hero__bg, .hero__glow, .hero-scroll, .hero .eyebrow i, .hero .btn-accent, .fab, .fab::before { animation: none !important; }
