@@ -52,19 +52,30 @@ $(function () {
   }
   revealOnScroll();
 
-  /* ---- Chuyển ngôn ngữ (cờ Việt - Trung) ---- */
-  var savedLang = null;
-  try { savedLang = window.localStorage.getItem("lba_lang"); } catch (e) {}
-  if (savedLang) {
+  /* ---- Chuyển ngôn ngữ (cờ Việt - Trung) ----
+     Mỗi phần tử cần dịch có thuộc tính data-zh chứa nội dung tiếng Trung.
+     Bản tiếng Việt gốc (innerHTML) được lưu lại lần đầu để có thể đổi lại. */
+  function applyLang(lang) {
+    $("[data-zh]").each(function () {
+      var $el = $(this);
+      if ($el.data("vi-html") === undefined) {
+        $el.data("vi-html", $el.html());
+      }
+      $el.html(lang === "zh" ? $el.attr("data-zh") : $el.data("vi-html"));
+    });
+    document.documentElement.setAttribute("lang", lang === "zh" ? "zh" : "vi");
     $(".lang-btn").removeClass("active");
-    $('.lang-btn[data-lang="' + savedLang + '"]').addClass("active");
+    $('.lang-btn[data-lang="' + lang + '"]').addClass("active");
   }
+
+  var savedLang = "vi";
+  try { savedLang = window.localStorage.getItem("lba_lang") || "vi"; } catch (e) {}
+  applyLang(savedLang);
+
   $(".lang-btn").on("click", function () {
     var lang = $(this).data("lang");
-    $(".lang-btn").removeClass("active");
-    $(this).addClass("active");
     try { window.localStorage.setItem("lba_lang", lang); } catch (e) {}
-    document.documentElement.setAttribute("lang", lang === "zh" ? "zh" : "vi");
+    applyLang(lang);
   });
 
   /* ---- Lightbox cho gallery sản phẩm ---- */
