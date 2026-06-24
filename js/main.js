@@ -1,5 +1,5 @@
 /* ===========================================================
-   CÔNG TY TNHH LƯU BẢO ANH — main.js (jQuery)
+   CÔNG TY TNHH THÀNH VŨ — main.js (jQuery)
    =========================================================== */
 $(function () {
   "use strict";
@@ -78,6 +78,22 @@ $(function () {
     applyLang(lang);
   });
 
+  /* ---- Slideshow banner trang chủ (2 ảnh chuyển qua lại) ---- */
+  var $slides = $(".hero__slide");
+  if ($slides.length > 1) {
+    var $dots = $(".hero-dot");
+    var cur = 0, timer;
+    function goTo(i) {
+      cur = (i + $slides.length) % $slides.length;
+      $slides.removeClass("is-active").eq(cur).addClass("is-active");
+      $dots.removeClass("is-active").eq(cur).addClass("is-active");
+    }
+    function start() { timer = setInterval(function () { goTo(cur + 1); }, 5000); }
+    function reset() { clearInterval(timer); start(); }
+    $dots.on("click", function () { goTo($dots.index(this)); reset(); });
+    start();
+  }
+
   /* ---- Lightbox cho gallery sản phẩm ---- */
   var $items = $(".gallery .g-item");
   if ($items.length) {
@@ -86,7 +102,7 @@ $(function () {
       '<div class="lightbox">' +
         '<button class="lb-close" aria-label="Đóng">&times;</button>' +
         '<button class="lb-nav lb-prev" aria-label="Trước">&#10094;</button>' +
-        '<img alt="Ảnh sản phẩm Lưu Bảo Anh">' +
+        '<img alt="Ảnh sản phẩm Thành Vũ">' +
         '<button class="lb-nav lb-next" aria-label="Sau">&#10095;</button>' +
       "</div>"
     ).appendTo("body");
@@ -125,7 +141,7 @@ $(function () {
     var ctx = canvas.getContext("2d");
     var hero = canvas.parentElement;
     var particles = [];
-    var colors = ["rgba(214,168,98,", "rgba(196,142,74,", "rgba(232,200,142,", "rgba(168,126,72,"];
+    var colors = ["rgba(120,210,224,", "rgba(86,196,210,", "rgba(170,236,238,", "rgba(60,170,205,"];
     function rnd(a, b) { return a + Math.random() * (b - a); }
     function make(spread) {
       return {
@@ -161,7 +177,7 @@ $(function () {
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
         ctx.fillStyle = p.c + p.a + ")";
-        ctx.shadowColor = "rgba(255,210,130,0.9)";
+        ctx.shadowColor = "rgba(150,235,238,0.9)";
         ctx.shadowBlur = 6;
         ctx.fill();
       }
