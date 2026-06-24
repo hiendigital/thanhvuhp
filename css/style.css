@@ -243,7 +243,7 @@ h1, h2, h3, h4 { line-height: 1.25; color: var(--primary); font-weight: 700; }
   border: 1px solid rgba(21,119,189,.30); padding: 8px 20px; border-radius: 50px;
   font-size: 0.85rem; font-weight: 600; letter-spacing: .5px; margin-bottom: 22px;
 }
-.hero-intro h1 { font-size: clamp(1.9rem, 4.5vw, 3.1rem); margin-bottom: 20px; }
+.hero-intro h1 { font-size: 32px; margin-bottom: 15px;line-height: 50px; }
 .hero-intro h1 span { color: var(--accent); white-space: nowrap; }
 .hero-intro p { font-size: 1.12rem; color: var(--text-soft); max-width: 680px; margin: 0 auto 30px; }
 .hero-intro .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
@@ -465,7 +465,7 @@ h1, h2, h3, h4 { line-height: 1.25; color: var(--primary); font-weight: 700; }
 .site-footer .f-logo { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
 .site-footer .f-logo .logo-fallback { background: rgba(255,255,255,.12); }
 .site-footer .f-logo strong { color: #fff; font-size: 1.1rem; }
-.site-footer .f-logo img { height: 56px; width: auto; background: #fff; padding: 8px 12px; border-radius: 10px; }
+.site-footer .f-logo img { height: 100px; width: auto;  padding: 8px 12px; border-radius: 10px; }
 .footer-links li { margin-bottom: 10px; }
 .footer-links a:hover { color: var(--accent); padding-left: 4px; }
 .footer-contact li { display: flex; gap: 10px; margin-bottom: 12px; }
@@ -548,7 +548,10 @@ h1, h2, h3, h4 { line-height: 1.25; color: var(--primary); font-weight: 700; }
    =========================================================== */
 .reveal { opacity: 0; transform: translateY(30px); transition: opacity .7s ease, transform .7s ease; }
 .reveal.in-view { opacity: 1; transform: translateY(0); }
-
+section#hero-intro
+ {
+    background: #f2f8fb;
+}
 /* ===========================================================
    RESPONSIVE
    =========================================================== */
@@ -598,12 +601,28 @@ h1, h2, h3, h4 { line-height: 1.25; color: var(--primary); font-weight: 700; }
   .site-header {
     padding:0;
   }
+  .hero-intro h1{
+    font-size: 21px;
+    margin-bottom: 15px;
+    line-height: 32px;
+  }
 }
 @media(max-width:360px){
   .topbar .tb-left,.topbar .tb-right {
     gap: 12px;
     font-size: 13px;
   }
+  .hero-intro {
+    padding: 30px 0 10px 0;
+    text-align: center;
+  }
+  .btn {
+ 
+    padding: 11px 14px;
+    font-size: 14px;
+  
+}
+  
 }
 /* Tôn trọng tùy chọn giảm chuyển động của người dùng */
 @media (prefers-reduced-motion: reduce) {
